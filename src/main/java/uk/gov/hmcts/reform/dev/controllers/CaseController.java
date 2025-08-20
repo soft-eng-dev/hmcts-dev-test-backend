@@ -14,7 +14,7 @@ public class CaseController {
 
     @GetMapping(value = "/get-example-case", produces = "application/json")
     public ResponseEntity<ExampleCase> getExampleCase() {
-        return ok(new ExampleCase(1, "ABC12345", "Case Title",
+        return ok(new ExampleCase(1, "ABCD12345", "Case Title Here",
                                   "Case Description", "Case Status", LocalDateTime.now()
         ));
     }
