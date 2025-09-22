@@ -3,10 +3,11 @@ package uk.gov.hmcts.reform.dev.services;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.dev.models.Task;
 import uk.gov.hmcts.reform.dev.repositories.TaskRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class TaskService {
@@ -14,6 +15,10 @@ public class TaskService {
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
+    }
+    
+    public Page<Task> getPaginatedTasks(Pageable pageable) {
+        return taskRepository.findAll(pageable);
     }
 
     public Task createTask(Task task) {
