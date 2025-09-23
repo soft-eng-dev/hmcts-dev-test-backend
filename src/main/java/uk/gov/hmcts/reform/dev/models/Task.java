@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -38,13 +39,13 @@ public class Task {
     private Status status = Status.PENDING; // default status
 
     @Column(name = "due_date")
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @CreatedDate
     @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate;
 
-    public Task(String title, String description, Status status, LocalDateTime dueDate) {
+    public Task(String title, String description, Status status, LocalDate dueDate) {
         this.title = title;
         this.description = description;
         this.status = status;
