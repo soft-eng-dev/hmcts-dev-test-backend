@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.dev.models.Task;
 import uk.gov.hmcts.reform.dev.repositories.TaskRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Random;
 
 @Component
@@ -20,9 +20,9 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Only seed if DB is greater than 4 due to postman testing 
+       
         
-        if (taskRepository.count() < 4) {
+        if (taskRepository.count() == 0) {
             for (int i = 1; i <= 20; i++) {
                 Task.Status status;
                 int r = random.nextInt(4);
@@ -37,7 +37,7 @@ public class DataSeeder implements CommandLineRunner {
                         "TASK-" + i,
                         "This is the description for task #" + i,
                         status,
-                        LocalDateTime.now().plusDays(random.nextInt(30))
+                        LocalDate.now().plusDays(random.nextInt(30))
                 );
 
                 taskRepository.save(task);
