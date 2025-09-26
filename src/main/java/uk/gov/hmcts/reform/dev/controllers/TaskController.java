@@ -31,8 +31,7 @@ public class TaskController {
     @GetMapping
     public ResponseEntity<Map<String, Object>> getTasks(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
+            @RequestParam(defaultValue = "10") int size) {
         Page<Task> taskPage = taskService.getPaginatedTasks(PageRequest.of(page, size));
 
         Map<String, Object> response = new HashMap<>();
@@ -48,7 +47,8 @@ public class TaskController {
     // Create Task
     @PostMapping("/add-task")
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        return ResponseEntity.ok(taskService.createTask(task));
+        Task createdTask = taskService.createTask(task);
+        return ResponseEntity.ok(createdTask);
     }
 
     // Get Task by ID
