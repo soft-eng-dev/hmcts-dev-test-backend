@@ -22,14 +22,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)  // required for @CreatedDate
+@EntityListeners(AuditingEntityListener.class)  
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)  // Title is required
+    @Column(nullable = false, unique = true)  // Title is required and unique
     private String title;
 
     @Column(columnDefinition = "TEXT")  // Optional description
@@ -38,7 +38,7 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Status status = Status.PENDING; // default status
 
-    @Column(name = "due_date")
+    @Column(nullable = false, name = "due_date")
     private LocalDate dueDate;
 
     @CreatedDate
