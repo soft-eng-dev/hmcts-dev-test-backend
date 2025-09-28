@@ -19,6 +19,9 @@ bin/main/application.yaml
 *.iml
 *.ipr
 
+.env 
+.vscode/ 
+
 .DS_Store
 
 applicationinsights-agent-*.jar
