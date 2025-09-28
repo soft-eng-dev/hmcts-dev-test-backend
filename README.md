@@ -1,9 +1,15 @@
 # HMCTS Dev Test Backend
-This is the backend test submission for the brand new HMCTS case management system.
+This is the backend test submission for the brand new HMCTS case management system that enables caseworkers to efficiently track and manage their daily tasks
 
 ## 🚀 Quick Start
 
-### Building the Application
+### Prerequisites
+- Java 21
+- PostgreSQL database
+- Gradle 8.x or higher
+
+### Database Setup
+Set up PostgreSQL locally or use Docker:
 
 ```bash
 ./gradlew build
@@ -18,77 +24,16 @@ This will compile the code, run tests, and generate the JAR file.
 ```
 The application will start on `http://localhost:4000`
 
-
 ### Base URL
 ```
 http://localhost:4000
 ```
-## 🔧 API Endpoints
 
-### Task Management
+## API Docs
 
-#### Get All Tasks (Paginated)
-```http
-GET /tasks?page=0&size=10
-```
-**Query Parameters:**
-- `page` (optional): Page number, default is 0
-- `size` (optional): Page size, default is 10
+All backend endpoints are documented in Swagger. Click below to explore them:
 
-**Response:**
-```json
-{
-  "tasks": [
-    {"id":69,
-    "title":"TASK-1",
-    "description":"This is the description for task #1",
-    "status":"IN_PROGRESS",
-    "dueDate":"2025-10-14",
-    "createdDate":"2025-09-27T14:08:11.869058"}
-  ],
-  "totalItems": 20,
-  "totalPages": 2,
-  "currentPage": 0,
-}
-```
-
-#### Create New Task
-```http
-POST /tasks/add-task
-Content-Type: application/json
-
-{
-  "title": "New Task",
-  "description": "Task description",
-  "status": "PENDING"
-}
-```
-
-#### Get Task by ID
-```http
-GET /tasks/{id}
-```
-
-**Example:**
-```http
-GET /tasks/1
-```
-
-#### Update Task Status
-```http
-PATCH /tasks/{id}/status?status=IN_PROGRESS
-```
-
-**Available Status Values:**
-- `PENDING`
-- `IN_PROGRESS` 
-- `COMPLETED`
-- `CANCELLED`
-
-#### Delete Task
-```http
-DELETE /tasks/{id}
-```
+[Task Management API - Swagger UI](http://localhost:4000/swagger-ui/index.html)
 
 ## Project Structure
 
@@ -116,28 +61,11 @@ src/
 ├── smokeTest/                           # Smoke tests
 └── test/                                # Unit tests
 ```
-
-## 🛠️ Technology Stack
-
-- **Java 21** - Latest LTS version
-- **Spring Boot 3.5.4** - Main framework
-- **Spring Data JPA** - Database abstraction
-- **PostgreSQL** - Production database
-- **SpringDoc OpenAPI** - API documentation
-- **Lombok** - Boilerplate code reduction
-- **JUnit 5** - Testing framework
-- **Gradle** - Build tool
-
 ## Database Configuration
 
 ### Development
-The application is configured to work with PostgreSQL. Update your `application.yaml` with your database credentials.
+The application is configured to work with PostgreSQL. Update your `application.yaml` with your database credentials on the .env file. The configuration of the env structure is found below.
 
-## API Docs
-
-All backend endpoints are documented in Swagger. Click below to explore them:
-
-[Task Management API - Swagger UI](http://localhost:4000/swagger-ui/index.html)
 
 ## Environment Variables
 
