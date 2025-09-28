@@ -60,7 +60,8 @@ Content-Type: application/json
 {
   "title": "New Task",
   "description": "Task description",
-  "status": "PENDING"
+  "status": "PENDING",
+"dueDate":"2025-10-14"
 }
 ```
 
