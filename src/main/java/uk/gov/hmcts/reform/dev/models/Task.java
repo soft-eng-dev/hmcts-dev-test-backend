@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.dev.models;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column; 
 import jakarta.persistence.Entity;
@@ -39,6 +40,7 @@ public class Task {
     private Status status = Status.PENDING; // default status
 
     @Column(nullable = false, name = "due_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
     @CreatedDate

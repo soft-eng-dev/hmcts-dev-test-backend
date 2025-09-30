@@ -21,17 +21,17 @@ public class TaskControllerFunctionalTest {
     void fullTaskLifecycle() throws Exception {
         // 1. Create a task
         String newTaskJson = """
-                {
-                  "title": "FunctionalTest Task",
-                  "description": "Testing full lifecycle",
-                  "status": "PENDING",
-                  "dueDate": "20-12-2028"
-                }
-                """;
+            {
+              "title": "FunctionalTest Task",
+              "description": "Testing full lifecycle",
+              "status": "PENDING",
+              "dueDate": "20-12-2028"
+            }
+            """;
 
         String location = mockMvc.perform(post("/tasks/add-task")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(newTaskJson))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(newTaskJson))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.title").value("FunctionalTest Task"))
@@ -60,5 +60,5 @@ public class TaskControllerFunctionalTest {
         mockMvc.perform(get("/tasks/{id}", taskId))
                 .andExpect(status().isNotFound());
     }
-
+    
 }
