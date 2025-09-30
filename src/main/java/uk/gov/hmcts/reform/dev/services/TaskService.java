@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Arrays;
 
 @Service
 public class TaskService {
@@ -37,6 +38,18 @@ public class TaskService {
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    public List<Task.Status> getAllStatuses() {
+        return Arrays.asList(Task.Status.values());
+    }
+
+    public long getTotalTasks() {
+        return taskRepository.count();
+    }
+
+    public List<Object[]> getTaskCountsByStatus() {
+        return taskRepository.countTasksByStatus();
     }
 
     public Task updateTaskStatus(Long id, Task.Status status) {
