@@ -101,6 +101,7 @@ SERVER_PORT=your_server_port        # e.g., 4000
 
 ## 🐛 Known Issues
 - - **Task Status Validation** – Backend does not enforce valid status transitions. Although the frontend `<select>` limits the choices, it is possible to re-select the current status.
+- - **Database Pool Name** - An unresolved error solved by a string 
 
 
 
