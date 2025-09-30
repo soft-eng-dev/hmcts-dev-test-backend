@@ -17,6 +17,7 @@ import uk.gov.hmcts.reform.dev.services.TaskService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tasks")
@@ -42,6 +43,24 @@ public class TaskController {
 
         return ResponseEntity.ok(response);
 
+    }
+
+    @GetMapping("/summary")
+    public ResponseEntity<Map<String, Object>> getTaskSummary() {
+        Map<String, Object> summary = new HashMap<>();
+
+        // Total tasks
+        summary.put("totalTasks", taskService.getTotalTasks());
+
+        // Counts per status
+        Map<String, Long> counts = taskService.getTaskCountsByStatus().stream()
+                .collect(Collectors.toMap(
+                        entry -> ((Task.Status) entry[0]).name(),
+                        entry -> (Long) entry[1]));
+
+        summary.put("statusCounts", counts);
+
+        return ResponseEntity.ok(summary);
     }
 
     // Create Task
