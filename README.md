@@ -60,6 +60,8 @@ src/
 ├── integrationTest/                      # Integration tests
 ├── smokeTest/                           # Smoke tests
 └── test/                                # Unit tests
+│   ├── TaskControllerTest.java
+│   └── TaskServiceTest.java
 ```
 ## Database Configuration
 
@@ -94,6 +96,7 @@ SERVER_PORT=your_server_port        # e.g., 4000
 | **Update task status** | `PATCH /tasks/{id}/status` with new status | Task status updated and returned |
 | **Delete a task** | `DELETE /tasks/{id}` | Task removed from system (`204 No Content`) |
 | **Get task by ID** | `GET /tasks/{id}` | Returns specific task details or `404 Not Found` |
+| **Get summary of tasks** | `GET /summary` | Returns a summary count of total tasks and per status counts  |
 | **View API documentation** | Navigate to `/swagger-ui.html` | Interactive API documentation displayed |
 
 ## 🐛 Known Issues
